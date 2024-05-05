@@ -31,9 +31,7 @@ function SearchBar({
   return (
     <>
       <div
-        className={
-          shakeInput === true ? "shake search-container" : "search-container"
-        }
+        className={shakeInput ? "shake search-container" : "search-container"}
       >
         <input
           onChange={handleSetInputValue}

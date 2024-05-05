@@ -1,0 +1,20 @@
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 550px;
+}
+.error-container h3 {
+  font-size: 30px;
+  padding: 10px;
+}
+.error-container h1 {
+  font-size: 200px;
+  color: #5758bb;
+  text-shadow: 2px 2px 4px #000000;
+}
+.error-container h2 {
+  font-size: 32px;
+  padding: 10px;
+}

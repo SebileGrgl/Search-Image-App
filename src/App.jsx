@@ -9,6 +9,7 @@ import ZoomImage from "./components/ZoomImage/ZoomImage";
 import Loading from "./components/Loading/Loading";
 import HistoryTags from "./components/HistoryTags/HistoryTags";
 import tags from "./db/Tags";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   const URL = "https://api.unsplash.com/search/photos";
@@ -21,6 +22,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showSelectedImage, setShowSelectedImage] = useState(false);
+  const [error, setError] = useState(false);
   const [history, setHistory] = useState(tags);
 
   useEffect(() => {
@@ -51,7 +53,13 @@ function App() {
             },
           }
         );
-        setImages(response.data.results);
+        const data = await response.data.results;
+        setImages(data);
+        if (data.length === 0) {
+          setError(true);
+        } else {
+          setError(false);
+        }
       } catch (error) {
         console.error("Error:", error);
       } finally {
@@ -60,15 +68,17 @@ function App() {
     };
     if (searchValue !== "") {
       getImages();
-      if (page === 1) {
+      if (page === 1 && !error) {
         handleHistory();
       }
     }
   }, [searchValue, page]);
 
   const handleHistory = () => {
-    const sameTags = history.filter((item) => item === searchValue);
-    if (sameTags.length === 0) {
+    const sameTags = history.find(
+      (item) => item.toLowerCase() === searchValue.toLowerCase()
+    );
+    if (sameTags === undefined) {
       setHistory([...history, searchValue].slice(-14));
     }
   };
@@ -95,12 +105,15 @@ function App() {
             setInputValue={setInputValue}
           />
         )}
+        {error && <NotFound />}
         <ShowImages
           images={images}
           setSelectedImage={setSelectedImage}
           setShowSelectedImage={setShowSelectedImage}
         />
-        {searchValue !== "" && <Buttons page={page} setPage={setPage} />}
+        {searchValue !== "" && !error && (
+          <Buttons page={page} setPage={setPage} />
+        )}
         {showSelectedImage && (
           <ZoomImage
             handleCloseImage={handleCloseImage}

@@ -59,6 +59,9 @@ function App() {
           setError(true);
         } else {
           setError(false);
+          if (page === 1) {
+            handleHistory();
+          }
         }
       } catch (error) {
         console.error("Error:", error);
@@ -66,11 +69,9 @@ function App() {
         setLoading(false);
       }
     };
+
     if (searchValue !== "") {
       getImages();
-      if (page === 1 && !error) {
-        handleHistory();
-      }
     }
   }, [searchValue, page]);
 

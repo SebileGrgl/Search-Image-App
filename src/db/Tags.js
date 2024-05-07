@@ -11,7 +11,7 @@ const tags = [
   "Travel",
   "Space",
   "Cars",
-  "Clothes",
+
   "People",
 ];
 export default tags;

@@ -80,7 +80,7 @@ function App() {
       (item) => item.toLowerCase() === searchValue.toLowerCase()
     );
     if (sameTags === undefined) {
-      setHistory([...history, searchValue].slice(-14));
+      setHistory([...history, searchValue].slice(-13));
     }
   };
 

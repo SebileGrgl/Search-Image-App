@@ -1,6 +1,6 @@
 import "./HistoryTags.css";
 function HistoryTags({ history, setSearchValue, setInputValue }) {
-  const updatedHistory = history.slice(0, 13);
+  const updatedHistory = history.slice(0, 12);
   const handleTagClick = (item) => {
     setSearchValue(item);
     setInputValue(item);

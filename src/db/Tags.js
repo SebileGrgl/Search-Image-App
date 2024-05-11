@@ -1,7 +1,6 @@
 const tags = [
   "Nature",
   "Sky",
-  "Animals",
   "Flowers",
   "Art",
   "Hobby",
@@ -11,7 +10,6 @@ const tags = [
   "Travel",
   "Space",
   "Cars",
-
   "People",
 ];
 export default tags;

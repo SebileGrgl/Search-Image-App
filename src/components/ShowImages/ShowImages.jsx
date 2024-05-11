@@ -12,7 +12,7 @@ function ShowImages({ images, setSelectedImage, setShowSelectedImage }) {
         {images.map((image) => (
           <div className="image-card" key={image.id}>
             <img
-              onDoubleClick={() => handleImageClick(image)}
+              onClick={() => handleImageClick(image)}
               className="image"
               src={image.urls.regular}
               alt={image.alt_description}

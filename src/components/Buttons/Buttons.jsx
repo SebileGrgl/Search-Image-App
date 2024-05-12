@@ -12,7 +12,10 @@ function Buttons({ page, setPage }) {
   return (
     <>
       <div className="buttons-container">
-        {page > 1 && <button onClick={handlePrevButton}>Prev</button>}
+        <button onClick={handlePrevButton} disabled={page < 2 ? true : false}>
+          Prev
+        </button>
+
         <button onClick={handleNextButton}>Next</button>
       </div>
     </>

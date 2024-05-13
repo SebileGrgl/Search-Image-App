@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ShowImages from "./components/ShowImages/ShowImages";
-import Buttons from "./components/Buttons/Buttons";
 import ZoomImage from "./components/ZoomImage/ZoomImage";
 import Loading from "./components/Loading/Loading";
 import HistoryTags from "./components/HistoryTags/HistoryTags";
 import tags from "./db/Tags";
 import NotFound from "./components/NotFound/NotFound";
+import Pagination from "./components/Pagination/Pagination";
 
 function App() {
   const URL = "https://api.unsplash.com/search/photos";
@@ -19,6 +19,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [images, setImages] = useState([]);
+  const [numberOfPage, setNumberOfPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showSelectedImage, setShowSelectedImage] = useState(false);
@@ -53,6 +54,8 @@ function App() {
             },
           }
         );
+        setNumberOfPage(response.data.total_pages);
+
         const data = await response.data.results;
         setImages(data);
         if (data.length === 0) {
@@ -87,6 +90,7 @@ function App() {
   const handleCloseImage = () => {
     setShowSelectedImage(false);
   };
+
   return (
     <>
       <SearchBar
@@ -113,7 +117,11 @@ function App() {
           setShowSelectedImage={setShowSelectedImage}
         />
         {searchValue !== "" && !error && (
-          <Buttons page={page} setPage={setPage} />
+          <Pagination
+            searchValue={searchValue}
+            setPage={setPage}
+            numberOfPage={numberOfPage}
+          />
         )}
         {showSelectedImage && (
           <ZoomImage

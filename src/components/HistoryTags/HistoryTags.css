@@ -10,6 +10,7 @@
 .history-tags li {
   padding: 10px 20px;
   border: 1px solid black;
+  border-radius: 3px;
   transition: background-color 0.2s ease;
   cursor: pointer;
 }

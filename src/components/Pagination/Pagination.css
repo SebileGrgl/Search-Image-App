@@ -26,9 +26,10 @@
   color: white;
   border: none;
 }
-.disabled {
+.btn.disabled {
   background-color: rgba(87, 88, 187, 0.8);
 }
+
 .btn {
   background-color: #5758bb;
   height: auto;
@@ -38,6 +39,7 @@
   border-radius: 3px;
   cursor: pointer;
 }
+
 .btn::marker {
   display: none;
 }
